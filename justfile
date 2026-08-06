@@ -1,8 +1,8 @@
-# Dev-Repo-Template Task Automation — Root Justfile
+# Single-Module-Template Task Automation — Root Justfile
 # https://github.com/casey/just
 #
 # Recipes are organised into per-domain sub-modules under tools/. Invoke a
-# sub-module recipe directly (e.g. `just build::rust`, `just test::python`),
+# sub-module recipe directly (e.g. `just build::cpp`, `just test::cpp`),
 # or use the root shorthands below.
 
 set shell := ["bash", "-c"]
@@ -29,11 +29,11 @@ help:
 
 # --- Setup & maintenance (→ tools/dev) ---
 
-# Set up the full development environment
+# Set up the development environment
 setup:
     @just dev::setup
 
-# Update all dependencies
+# Update build dependencies
 update:
     @just dev::update
 
@@ -47,25 +47,25 @@ clean:
 
 # --- Build (→ tools/build) ---
 
-# Build every language module
+# Build the C++ module
 build:
     @just build::all
 
 # --- Test (→ tools/test) ---
 
-# Run every language module's test suite
+# Run test suite
 test:
     @just test::all
 
 # --- Validation (→ tools/validation) ---
 
-# Run every language module's linters
+# Run linters/formatters
 lint:
     @just validation::all
 
 # --- Docs (→ tools/docs) ---
 
-# Build the documentation site (MkDocs + Sphinx)
+# Build the documentation site
 docs:
     @just docs::build
 

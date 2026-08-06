@@ -5,17 +5,16 @@ on:
   push:
     branches: [main]
     paths:
-      - "**/benchmark/**"
-      - "**/benches/**"
+      - "benchmark/**"
+      - "src/**"
+      - "include/**"
 
 jobs:
   benchmark:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-      - run: cargo bench
-        working-directory: rust
-      - uses: astral-sh/setup-uv@v5
-      - run: uv sync --group dev && uv run pytest benchmark --benchmark-only
-        working-directory: python
+      - run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_BENCHMARK=ON
+          cmake --build build --target single_module_template_benchmark --parallel
+          ./build/benchmark/single_module_template_benchmark

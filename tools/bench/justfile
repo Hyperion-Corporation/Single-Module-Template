@@ -1,17 +1,8 @@
-# tools/bench — run benchmarks across language modules.
+# tools/bench — run benchmarks for C++.
 
 set shell := ["bash", "-c"]
 
-all: python rust cpp go
-
-python:
-    cd python && uv run pytest benchmark --benchmark-only
-
-rust:
-    cd rust && cargo bench
+all: cpp
 
 cpp:
-    cmake -S cpp -B cpp/build -DCMAKE_BUILD_TYPE=Release && cmake --build cpp/build --target benchmark -j && ./cpp/build/benchmark/benchmark
-
-go:
-    cd go && go test -bench=. ./...
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_BENCHMARK=ON && cmake --build build --target single_module_template_benchmark -j && ./build/benchmark/single_module_template_benchmark
