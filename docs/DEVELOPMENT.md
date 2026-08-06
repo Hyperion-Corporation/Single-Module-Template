@@ -2,29 +2,37 @@
 
 ## Prerequisites
 
+- C++17 compatible compiler (GCC 9+, Clang 10+, MSVC 2019+)
+- CMake 3.20+
 - Git, [`just`](https://github.com/casey/just), `pre-commit`
-- Per-module toolchains: `uv` (Python 3.11+), Node 22 (TypeScript), JDK 21 + Gradle wrapper (Kotlin), JDK 21 + Maven (Java), stable Rust (Cargo), Go 1.22+, CMake + a C++17 compiler
 
 ## Local Setup
 
 ```bash
-git clone https://github.com/<org>/<repo>.git
-cd <repo>
+git clone https://github.com/<org>/Single-Module-Template.git
+cd Single-Module-Template
 cp .env.example .env
-pip install pre-commit && pre-commit install
-just --list
+just setup
 ```
 
-## Running a Single Module
+## Build and Test
 
 ```bash
-just test python       # or typescript, kotlin, java, rust, go, cpp
-just lint python
+# Using Just task runner
+just build
+just test
+just bench
+just lint
+
+# Using CMake directly
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON -DBUILD_BENCHMARK=ON
+cmake --build build --parallel
+ctest --test-dir build --output-on-failure
 ```
 
 ## Containerized Dev Environment
 
-Open the repo in VS Code and choose "Reopen in Container" — see [`.devcontainer/devcontainer.json`](../.devcontainer/devcontainer.json). Or run the full stack with:
+Open the repo in VS Code and choose "Reopen in Container" — see [`.devcontainer/devcontainer.json`](../.devcontainer/devcontainer.json). Or run with:
 
 ```bash
 docker compose -f infra/docker/docker-compose.yml up
@@ -35,6 +43,7 @@ docker compose -f infra/docker/docker-compose.yml up
 | Task | Command |
 | --- | --- |
 | Run all tests | `just test` |
-| Run all linters | `just lint` |
+| Run linters | `just lint` |
+| Run benchmarks | `just bench` |
 | Build docs | `just docs` |
 | Build & start Docker stack | `just docker-up` |

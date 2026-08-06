@@ -1,28 +1,21 @@
 /*
- * Dev-Repo-Template — Structurizr DSL workspace (C4 model)
+ * Single-Module-Template — Structurizr DSL workspace (C4 model)
  *
  * See docs/structurizr/README.md for rendering instructions.
- *
- * TODO: Replace the placeholder model below with the real system once this
- * template is used to seed a product repository.
  */
 
-workspace "Dev-Repo-Template" "Placeholder C4 model for a repository generated from this template." {
+workspace "Single-Module-Template" "C4 model for Single-Module-Template C++ repository." {
 
     model {
-        user = person "User" "Interacts with the system."
+        user = person "User" "Interacts with the C++ application."
 
-        system = softwareSystem "System" "The application generated from this template." {
-            api = container "API" "Serves requests." "Python"
-            webapp = container "Web App" "User-facing interface." "TypeScript"
-            core = container "Core Engine" "Performance-critical logic." "Rust / C++"
-            database = container "Database" "Stores application state." "PostgreSQL"
+        system = softwareSystem "Single-Module-Template" "C++ repository application." {
+            cli = container "CLI Executable" "Command-line interface." "C++17"
+            lib = container "Core Library" "C++ domain logic." "C++17"
         }
 
-        user -> webapp "Uses"
-        webapp -> api "Calls" "HTTPS/JSON"
-        api -> core "Delegates to"
-        api -> database "Reads/writes"
+        user -> cli "Executes"
+        cli -> lib "Calls"
     }
 
     views {

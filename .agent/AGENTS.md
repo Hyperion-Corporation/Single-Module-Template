@@ -1,15 +1,10 @@
 # AGENTS.md - Instructions for Coding Assistant LLMs
 
-[![Python](https://img.shields.io/badge/Python-3.11+-3776ab?logo=python&logoColor=white)](https://www.python.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org/)
-[![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)](https://www.java.com/)
-[![Rust](https://img.shields.io/badge/Rust-1.80%2B-000000?logo=rust&logoColor=white)](https://www.rust-lang.org/)
-[![Go](https://img.shields.io/badge/Go-1.22+-00ADD8?logo=go&logoColor=white)](https://go.dev/)
 [![C++](https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white)](https://isocpp.org/)
+[![CMake](https://img.shields.io/badge/CMake-Build-064F8C?logo=cmake&logoColor=white)](https://cmake.org/)
 
 > **Version**: 1.0
-> **Last Updated**: 2026-07-30
+> **Last Updated**: 2026-08-06
 > **Purpose**: Authoritative reference for AI assistants (Claude, GPT, Gemini, Copilot, etc.) working in repositories generated from this template.
 
 ## Table of Contents
@@ -23,52 +18,46 @@
 
 ## 1. Project Overview & Mission
 
-> **TODO:** Replace with a one-paragraph description of what the generated project does and why it exists.
-
-This repository is a scaffold, not a product. When it is used via "Use this template", update this section first — every other document under `.agent/` and `docs/` links back to it.
+`Single-Module-Template` is a GitHub template repository designed for single-module C++ projects. It provides modern C++ scaffolding including CMake build configurations, GoogleTest unit testing, Google Benchmark micro-benchmarks, CI/CD pipelines, containerized dev environments, pre-commit hooks, and LLM coding-agent instructions.
 
 ## 2. Technical Stack & Governance
 
 | Component | Specification | Notes |
 | --- | --- | --- |
-| Python | 3.11+ | Managed via `uv`; always `source .venv/bin/activate` |
-| TypeScript | 5 | Managed via `npm` workspaces |
-| Kotlin | 2.0 / JVM 21 | Built via Gradle (`gradlew`) |
-| Java | 21 | Built via Maven (`mvn`) |
-| Rust | stable | Managed via `cargo` |
-| Go | 1.22+ | Managed via `go.mod`, no external tooling required |
-| C++ | 17 | Built via CMake, environment managed by Pixi or vcpkg |
-| Config | `.env` / `configs/` | Environment-specific values never committed; see `.env.example` |
+| C++ | C++17 | Standardized modern C++ language standard |
+| Build System | CMake 3.20+ | Root `CMakeLists.txt` builds libraries, executables, tests, benchmarks |
+| Unit Testing | GoogleTest 1.15+ | Integrated via `FetchContent` / `find_package` |
+| Benchmarks | Google Benchmark 1.9+ | Integrated via `FetchContent` / `find_package` |
+| Task Runner | Just | Command recipes in `justfile` and `tools/` |
+| Config | `.env` / `config/` | JSON / environment configuration |
 
 ## 3. Module Boundaries
 
-- `python/src` — domain logic. No imports from `typescript/`, `kotlin/`, `java/`, or other language modules.
-- `typescript/src` — presentation/CLI layer. Talks to other modules only through their published APIs (HTTP, FFI, or CLI), never by reaching into their source trees.
-- `rust/src` and `cpp/src` — performance-critical cores, exposed to higher-level languages through explicit bindings (e.g. `pyo3`/`pybind11`, `napi`, JNI). No language-specific logic should leak across the binding boundary.
-- `go/cmd` and `go/internal` — services/CLIs. `internal/` is never imported from outside the `go/` module.
-- `kotlin/src` — JVM/Android-facing code, isolated behind Gradle module boundaries.
-- `java/src` — JVM-facing code, isolated behind Maven module boundaries.
-- Cross-module contracts (schemas, protobufs, OpenAPI specs) live under `docs/` or a dedicated `schemas/` directory — never duplicated per language.
+- `include/single_module_template/` — Public C++ header files.
+- `src/` — Implementation files (`.cpp`).
+- `test/` — Unit tests using GoogleTest.
+- `benchmark/` — Performance micro-benchmarks using Google Benchmark.
+- `config/` — Configuration assets (`default.json`).
 
 ## 4. Key CLI Entry Points
 
 | Command | Purpose |
 | --- | --- |
 | `just --list` | List all available command-runner recipes |
-| `just test` | Run the test suite for every language module |
-| `just lint` | Run linters/formatters for every language module |
-| `just docs` | Build the MkDocs + Sphinx documentation site |
-| `just docker-up` | Start the local Docker Compose stack |
+| `just build` | Build the C++ module via CMake |
+| `just test` | Run GoogleTest suite via CTest |
+| `just bench` | Run Google Benchmark suite |
+| `just lint` | Check formatting via `clang-format` |
+| `just docs` | Build the MkDocs documentation site |
 
 ## 5. Coding Standards
 
-- Follow the per-language rules in [`.agent/rules/`](rules/) (`python.md`, `typescript_react.md`, `kotlin.md`, `java.md`, `rust.md`, `go.md`, `cpp.md`).
+- Follow C++ core guidelines and rules specified in `.agent/rules/cpp.md`.
 - Prefer small, reviewable diffs. Do not reformat files unrelated to the change.
-- Every new public function/class needs a docstring/doc-comment; every new module needs at least one test.
-- Never commit secrets. Use `.env` (git-ignored) and document new variables in `.env.example`.
+- Every new public header function/class must include documentation comments.
+- Every new feature must include corresponding unit tests in `test/`.
 
 ## 6. Known Constraints
 
-> **TODO:** Document real constraints (rate limits, hardware requirements, licensing restrictions, etc.) once the project has them.
-
-- This template repository does not build or run as-is — each language module contains only illustrative examples.
+- Requires C++17 compliant compiler (GCC 9+, Clang 10+, MSVC 2019+).
+- CMake 3.20 or later required.

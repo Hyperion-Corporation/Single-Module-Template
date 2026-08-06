@@ -1,27 +1,33 @@
 # Architecture
 
-> **TODO:** Replace with the real system architecture once product code exists. This page should stay in sync with `docs/structurizr/workspace.dsl`.
+`Single-Module-Template` is structured as a single C++ module repository.
 
 ## Overview
 
-> One paragraph: what the system does and the shape of its major components.
+The repository isolates header interfaces, source implementations, unit tests, performance benchmarks, and configuration assets into clear directory boundaries.
 
-## Module Boundaries
+## Module Structure
 
-| Module | Language | Responsibility |
+| Directory | Language / Tool | Responsibility |
 | --- | --- | --- |
-| `python/` | Python | TODO |
-| `typescript/` | TypeScript | TODO |
-| `kotlin/` | Kotlin | TODO |
-| `java/` | Java | TODO |
-| `rust/` | Rust | TODO |
-| `go/` | Go | TODO |
-| `cpp/` | C++ | TODO |
+| `include/` | C++ (Headers) | Public C++ header files (`single_module_template/`) |
+| `src/` | C++ (Sources) | Implementation of C++ library components and CLI |
+| `test/` | C++ / GoogleTest | Automated unit test suite |
+| `benchmark/` | C++ / Google Benchmark | Micro-benchmarking suite |
+| `config/` | JSON | Runtime configuration assets |
+
+## Build System
+
+Built using CMake 3.20+ targeting C++17 standard.
+- Library target: `single_module_template_lib`
+- CLI executable target: `single_module_template_cli`
+- Unit tests target: `single_module_template_tests`
+- Benchmark target: `single_module_template_benchmark`
 
 ## C4 Diagrams
 
-See [`docs/structurizr/`](structurizr/README.md) for the rendered C4 model (Context → Container → Component).
+See [`docs/structurizr/`](structurizr/README.md) for the rendered C4 model.
 
 ## Architecture Decision Records
 
-Significant, hard-to-reverse decisions are recorded under [`docs/adr/`](adr/) using the [Michael Nygard ADR format](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions).
+Significant architecture decisions are recorded under [`docs/adr/`](adr/).

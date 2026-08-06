@@ -1,15 +1,13 @@
-site_name: Dev-Repo-Template Documentation
+site_name: Single-Module-Template Documentation
 site_description: >-
-  Unified documentation portal for repositories generated from Dev-Repo-Template.
+  Documentation portal for Single-Module-Template C++ repository.
 site_author: ACFHarbinger
-repo_url: https://github.com/ACFHarbinger/Dev-Repo-Template
-repo_name: ACFHarbinger/Dev-Repo-Template
+repo_url: https://github.com/ACFHarbinger/Single-Module-Template
+repo_name: ACFHarbinger/Single-Module-Template
 edit_uri: edit/main/docs/
 
 docs_dir: .
 site_dir: ../site
-exclude_docs: |
-  sphinx/conf.py
 
 theme:
   name: material
@@ -40,13 +38,6 @@ theme:
 
 plugins:
   - search
-  - mkdocstrings:
-      handlers:
-        python:
-          paths: [../python/src]
-          options:
-            docstring_style: google
-            show_source: true
 
 nav:
   - Home: index.md
@@ -60,5 +51,5 @@ nav:
   - Troubleshooting: TROUBLESHOOTING.md
   - Glossary: GLOSSARY.md
   - Architecture Decisions: adr/
-  - Roadmap: docs/moon/ROADMAP.md
-  - Changelog: docs/moon/CHANGELOG.md
+  - Roadmap: moon/ROADMAP.md
+  - Changelog: moon/CHANGELOG.md
