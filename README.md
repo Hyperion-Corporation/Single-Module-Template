@@ -7,7 +7,7 @@
 </br>
 
 <a href="https://github.com/ACFHarbinger/Single-Module-Template/releases"><img alt="Release" src="https://img.shields.io/git/v/release/ACFHarbinger/Single-Module-Template?include_prereleases&logo=github&color=blue"></a>
-<a href="LICENSE.md"><img alt="License" src="https://img.shields.io/badge/License-AGPL_v3-blue.svg"></a>
+<a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-AGPL_v3-blue.svg"></a>
 <a href="https://isocpp.org/"><img alt="C++" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white"></a>
 <a href="https://cmake.org/"><img alt="CMake" src="https://img.shields.io/badge/CMake-Build-064F8C?logo=cmake&logoColor=white"></a>
 <a href="https://github.com/casey/just"><img alt="Just" src="https://img.shields.io/badge/Just-Task_Runner-black"></a>
@@ -71,5 +71,5 @@ just docs     # Build documentation site
 
 This project is dual-licensed:
 
-- **Open source (free) — GNU AGPL-3.0.** See [LICENSE.md](LICENSE.md).
-- **Commercial (paid).** See [LICENSE.txt](LICENSE.txt).
+- **Open source (free) — GNU AGPL-3.0.** See [LICENSE](LICENSE).
+- **Commercial (paid).** See [LICENSE](LICENSE).
