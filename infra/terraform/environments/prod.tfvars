@@ -1,3 +1,3 @@
 environment  = "prod"
-project_name = "dev-repo-template"
+project_name = "single-module-template"
 region       = "us-east-1"
