@@ -22,7 +22,7 @@ Status markers: ✅ Done · 🚧 In Progress · 📋 Pending
 | T2 | GoogleTest unit testing suite (`test/`) | S | ✅ Done |
 | T3 | Google Benchmark performance suite (`benchmark/`) | S | ✅ Done |
 | T4 | CMake 3.20+ build configuration (`CMakeLists.txt`) | S | ✅ Done |
-| T5 | GitHub Actions CI/CD workflows (`.github/workflows/`) | M | ✅ Done |
+| T5 | GitHub Actions CI/CD workflows (`.git/workflows/`) | M | ✅ Done |
 | T6 | `justfile` + `tools/` C++ task runner | S | ✅ Done |
 | T7 | `.agent/` LLM coding-agent rules & instructions (`AGENTS.md`) | M | ✅ Done |
 | T8 | Documentation portal (`docs/`) | S | ✅ Done |

@@ -1,18 +1,18 @@
 """Commit-message ticket reference checker and board updater.
 
-Invoked by ``github/hooks/post-commit`` (see that file for the wiring
+Invoked by ``git/hooks/post-commit`` (see that file for the wiring
 strategy). Reads the just-made commit message, checks it against the regex
 patterns configured in ``automation_rules.yaml``, and -- if a ticket
 reference is found -- transitions that issue to ``status:in-progress`` on
 the ProjectV2 board via :mod:`agent_tools`.
 
-Ported from Visual-Graph-Programming's github/scripts/check_commit_ref.py.
+Ported from Visual-Graph-Programming's git/scripts/check_commit_ref.py.
 
 This script is deliberately fail-open: any network/API error is logged and
 swallowed so that a flaky GitHub API call never blocks a local commit.
 
 Usage:
-    python github/scripts/check_commit_ref.py --commit-msg-file .git/COMMIT_EDITMSG
+    python git/scripts/check_commit_ref.py --commit-msg-file .git/COMMIT_EDITMSG
 """
 
 from __future__ import annotations
@@ -26,13 +26,13 @@ from pathlib import Path
 
 import yaml
 
-import agent_tools
+from .agent_tools import resolve_status_field
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger("check_commit_ref")
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
-CONFIG_PATH = REPO_ROOT / "github" / "config" / "automation_rules.yaml"
+CONFIG_PATH = REPO_ROOT / "git" / "config" / "automation_rules.yaml"
 
 
 def load_patterns() -> tuple[list[re.Pattern[str]], bool]:
@@ -75,7 +75,7 @@ def update_board_best_effort(issue_number: int, project_id: str) -> None:
         project_id: ``ProjectV2`` node ID to update.
     """
     try:
-        status_options = agent_tools.resolve_status_field(project_id)
+        status_options = resolve_status_field(project_id)
         logger.info(
             "Would transition issue #%s to In Progress on project %s "
             "(item-id lookup omitted in the local-hook fast path)",

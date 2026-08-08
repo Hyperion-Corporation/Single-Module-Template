@@ -6,7 +6,7 @@
 
 </br>
 
-<a href="https://github.com/ACFHarbinger/Single-Module-Template/releases"><img alt="Release" src="https://img.shields.io/github/v/release/ACFHarbinger/Single-Module-Template?include_prereleases&logo=github&color=blue"></a>
+<a href="https://github.com/ACFHarbinger/Single-Module-Template/releases"><img alt="Release" src="https://img.shields.io/git/v/release/ACFHarbinger/Single-Module-Template?include_prereleases&logo=github&color=blue"></a>
 <a href="LICENSE.md"><img alt="License" src="https://img.shields.io/badge/License-AGPL_v3-blue.svg"></a>
 <a href="https://isocpp.org/"><img alt="C++" src="https://img.shields.io/badge/C%2B%2B-17-00599C?logo=cplusplus&logoColor=white"></a>
 <a href="https://cmake.org/"><img alt="CMake" src="https://img.shields.io/badge/CMake-Build-064F8C?logo=cmake&logoColor=white"></a>
@@ -32,7 +32,7 @@ Use **"Use this template"** on GitHub to start a new C++ project immediately.
 | `config/` | Runtime JSON configuration (`default.json`) |
 | `.agent/` | LLM coding-agent prompts, rules, and workflows (`AGENTS.md`) |
 | `.devcontainer/` | VS Code Dev Container definition |
-| `.github/` | Issue/PR templates, GitHub Actions CI workflows |
+| `.git/` | Issue/PR templates, GitHub Actions CI workflows |
 | `infra/` | Docker containerization, Kubernetes/Helm/Terraform/Ansible manifests |
 | `docs/` | Architecture notes, design documentation, MkDocs material site |
 | `tools/` | Automation task scripts backing the root `justfile` |

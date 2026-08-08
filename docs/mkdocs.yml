@@ -53,3 +53,5 @@ nav:
   - Architecture Decisions: adr/
   - Roadmap: moon/ROADMAP.md
   - Changelog: moon/CHANGELOG.md
+  - Research: moon/research/TEMPLATE.md
+  - Reports: moon/reports/TEMPLATE.md
