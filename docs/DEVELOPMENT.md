@@ -35,7 +35,7 @@ ctest --test-dir build --output-on-failure
 Open the repo in VS Code and choose "Reopen in Container" — see [`.devcontainer/devcontainer.json`](../.devcontainer/devcontainer.json). Or run with:
 
 ```bash
-docker compose -f infra/docker/docker-compose.yml up
+docker compose -f infra/global/docker/docker-compose.yml up
 ```
 
 ## Common Tasks
