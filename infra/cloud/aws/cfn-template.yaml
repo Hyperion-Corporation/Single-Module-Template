@@ -7,7 +7,7 @@ Description: Serverless Backend stack for the Single Module Template.
 
 Resources:
   # DynamoDB Database Table
-  Single_module_templateTable:
+  SingleModuleTemplateTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:
@@ -18,7 +18,7 @@ Resources:
         WriteCapacityUnits: 5
 
   # Lambda Function
-  Single_module_templateFunction:
+  SingleModuleTemplateFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: handler.lambda_handler
@@ -26,10 +26,10 @@ Resources:
       CodeUri: ./src
       Environment:
         Variables:
-          TABLE_NAME: !Ref Single_module_templateTable
+          TABLE_NAME: !Ref SingleModuleTemplateTable
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref Single_module_templateTable
+            TableName: !Ref SingleModuleTemplateTable
       Events:
         ApiEvent:
           Type: Api
