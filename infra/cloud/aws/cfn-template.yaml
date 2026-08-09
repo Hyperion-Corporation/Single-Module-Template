@@ -3,11 +3,11 @@
 
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Serverless Backend stack for the Polyglot App.
+Description: Serverless Backend stack for the Single Module Template.
 
 Resources:
   # DynamoDB Database Table
-  PolyglotTable:
+  Single_module_templateTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:
@@ -18,7 +18,7 @@ Resources:
         WriteCapacityUnits: 5
 
   # Lambda Function
-  PolyglotFunction:
+  Single_module_templateFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: handler.lambda_handler
@@ -26,10 +26,10 @@ Resources:
       CodeUri: ./src
       Environment:
         Variables:
-          TABLE_NAME: !Ref PolyglotTable
+          TABLE_NAME: !Ref Single_module_templateTable
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref PolyglotTable
+            TableName: !Ref Single_module_templateTable
       Events:
         ApiEvent:
           Type: Api
